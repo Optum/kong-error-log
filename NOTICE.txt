@@ -1,0 +1,27 @@
+Kong Error Log Plugin
+Copyright 2018 Optum
+
+
+Project Description:
+====================
+
+The Kong Error Log Plugin is a small, lua-based, OpenResty Nginx module which exposes nginx webserver error logs to Kong’s lua land driven plugins. The purpose of this plugin is to enable better log error history by adding additional webserver level errors within our Splunk transaction logging plugin.
+
+
+
+Authors:
+Jeremy Justus, © Optum 2018
+Ross Sbriscia, © Optum 2018
+
+
+Added Files:
+============
+
+
+
+
+
+
+
+Modified Files:
+===============
