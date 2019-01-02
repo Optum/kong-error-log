@@ -6,7 +6,7 @@ local sub = string.sub
 local gsub = string.gsub
 
 KongErrorLog.PRIORITY = 13
-KongErrorLog.VERSION = "0.1.0"
+KongErrorLog.VERSION = "0.1.1"
 
 function KongErrorLog:new(name)
   name = name or "kong-error-log"
