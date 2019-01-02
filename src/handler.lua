@@ -1,6 +1,9 @@
 local BasePlugin = require "kong.plugins.base_plugin"
 local KongErrorLog = BasePlugin:extend()
 local errlog = require "ngx.errlog"
+local find = string.find
+local sub = string.sub
+local gsub = string.gsub
 
 KongErrorLog.PRIORITY = 13
 KongErrorLog.VERSION = "0.1.0"
@@ -34,10 +37,10 @@ function KongErrorLog:log(conf)
     if res then
       for i = 1, #res, 3 do
           local msg  = res[i + 2] -- res[i + 2] gives us the data of the error.
-          if string.find(msg, conf.keyword) then --Pattern match on schema set related errors
-            msg = msg:gsub('"','') --Strip double quotes from string so its safe for logging to json
+          if find(msg, conf.keyword) then --Pattern match on schema set related errors
+            msg = gsub(msg, '"', '') --Strip double quotes from string so its safe for logging to json
             if conf.trim_on ~= "" then
-              msg = msg:sub(1, msg:find(conf.trim_on) + (#conf.trim_on - 2)) --Remove extraneous undesired info
+              msg = sub(msg, 1, find(msg, conf.trim_on) + (#conf.trim_on - 2)) --Remove extraneous undesired info
             end
             kong.ctx.shared.errmsg = msg --Set it as a shared context for other plugins to reference
             break
