@@ -5,7 +5,7 @@
   Our use case was simple, we wanted to log the L4 errors NGINX was throwing around problems proxying to backend API services. Hence the observable defaults in our plugin schema that target and trim upstream related NGINX errors.
    
   To leverage this plugin, you will need to define a shm in your nginx conf:
-  ```lua_capture_error_log 1m;``` 
+  ```lua_capture_error_log 100k;``` 
   
   Example Error Log Highlighted:
 
