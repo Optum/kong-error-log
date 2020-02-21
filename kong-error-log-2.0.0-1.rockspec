@@ -1,5 +1,5 @@
 package = "kong-error-log"
-version = "0.1-1"
+version = "2.0.0-1"
 source = {
    url = "git+https://github.com/Optum/kong-error-log.git"
 }
