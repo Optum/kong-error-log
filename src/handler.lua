@@ -6,7 +6,7 @@ local sub = string.sub
 local gsub = string.gsub
 
 KongErrorLog.PRIORITY = 13
-KongErrorLog.VERSION = "0.1.1"
+KongErrorLog.VERSION = "2.0.0"
 
 function KongErrorLog:new(name)
   name = name or "kong-error-log"
@@ -37,11 +37,9 @@ function KongErrorLog:log(conf)
     if res then
       for i = 1, #res, 3 do
           local msg  = res[i + 2] -- res[i + 2] gives us the data of the error.
-          if find(msg, conf.keyword) then --Pattern match on schema set related errors
+          if find(msg, conf.keyword) and find(msg, conf.trim_on) then --Pattern match on schema set related errors
             msg = gsub(msg, '"', '') --Strip double quotes from string so its safe for logging to json
-            if conf.trim_on ~= "" then
-              msg = sub(msg, 1, find(msg, conf.trim_on) + (#conf.trim_on - 2)) --Remove extraneous undesired info
-            end
+            msg = sub(msg, 1, find(msg, conf.trim_on) + (#conf.trim_on - 2)) --Remove extraneous undesired info
             kong.ctx.shared.errmsg = msg --Set it as a shared context for other plugins to reference
             break
           end
