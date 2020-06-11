@@ -12,7 +12,7 @@
   ![Error Sample](https://github.com/Optum/kong-error-log/blob/master/NginxUpstreamErrorMsg.png)
   
 ## Supported Kong Releases
-Kong >= 0.14.1
+Kong >= 1.x
 
 ## Installation
 Recommended:
